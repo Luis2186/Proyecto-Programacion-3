@@ -1,0 +1,158 @@
+﻿@model WebObligatoriop3.Models.ViewModelPlanta
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="m-5">Registro</h1>
+
+<div class="row m-5">
+    <div class="col-md-4">
+
+        <form asp-action="Create" enctype="multipart/form-data">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mt-3">
+                <button type="button" id="addRow" class="btn btn-outline-secondary"> Ingresar Nombre Vulgar </button>
+            </div>
+
+            <div class="form-group mt-3" id="nuevoInput">
+                <input type="hidden" class="form-control" id="total" value="0" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class="control-label font-weight-bold"> Nombre Cientifico</label>
+                <input asp-for="UnaP.NombreCientifico" class="form-control" />
+                <span asp-validation-for="UnaP.NombreCientifico" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label class="control-label font-weight-bold">Tipo de Planta </label>
+                <select name="IdTipoDePlantas" id="tdp" class="form-control">
+                    @foreach (Dominio.EntidadesNegocio.TipoDePlanta tDP in Model.TipoDePlantas)
+                    {
+                        <option value="@tDP.Id">@tDP.Nombre</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group mt-3">
+                <label asp-for="UnaP.Descripcion" class="control-label font-weight-bold"></label>
+                <input asp-for="UnaP.Descripcion" class="form-control" />
+                <span asp-validation-for="UnaP.Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label class="control-label font-weight-bold"> Tipo de Ambiente </label>
+                <select asp-for="UnaP.Ambiente" class="form-control">
+                    <option value="Exterior">   Exterior    </option>
+                    <option value="Interior">   Interior    </option>
+                    <option value="Mixta">      Mixta       </option>
+                </select>
+                <span asp-validation-for="UnaP.Ambiente" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label class="control-label font-weight-bold">Altura Maxima</label>
+                <input asp-for="UnaP.AlturaMaxima" class="form-control" />
+                <span asp-validation-for="UnaP.AlturaMaxima" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="UnaP.Precio" class="control-label font-weight-bold"></label>
+                <input asp-for="UnaP.Precio" class="form-control" />
+                <span asp-validation-for="UnaP.Precio" class="text-danger"></span>
+            </div>
+
+            <h3>Ficha de Cuidado</h3>
+
+            <div class="form-group mt-3">
+                <label asp-for="UnaF.Cantidad" class="control-label font-weight-bold"></label>
+                <input asp-for="UnaF.Cantidad" class="form-control" />
+                <span asp-validation-for="UnaF.Cantidad" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label class="control-label font-weight-bold"> Unidad de Tiempo</label>
+                <select asp-for="UnaF.UnidadDeTiempo" id="tdp" class="form-control">
+                    <option value="Dia/s">   Dia/s   </option>
+                    <option value="Semana/s">Semana/s</option>
+                    <option value="Mes/es">  Mes/es  </option>
+                    <option value="Año/s">   Año/s   </option>
+                </select>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="UnaF.Temperatura" class="control-label font-weight-bold"></label>
+                <input type="number" asp-for="UnaF.Temperatura" class="form-control" />
+                <span asp-validation-for="UnaF.Temperatura" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label class="control-label font-weight-bold">Tipo de Iluminacion </label>
+                <select name="IdTipoDeIluminacion" id="tdi" class="form-control">
+                    @foreach (Dominio.EntidadesNegocio.TipoDeIluminacion tDI in Model.TipoDeIluminaciones)
+                    {
+                        <option value="@tDI.Id">@tDI.Nombre</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class="control-label font-weight-bold">Foto: </label>
+                <input asp-for="Imagen" class="form-control" />
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ListaDePlantas">Volver</a>
+</div>
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+    function openSuccesModal(mensajeError) {
+        document.getElementById('mensajeModalError').innerHTML = mensajeError;
+        $('#myModalError').modal('show');
+        }
+
+    $(document).ready(function () {
+        var msgError = "@TempData["MensajeError"]";
+        if (msgError)
+            openSuccesModal(msgError);
+    });
+
+        $("#addRow").click(function () {
+            var cantFilas = parseInt($("#total").val());
+            cantFilas++;
+            $("#total").val(cantFilas);
+            var html = '';
+            html += '<div id="inputNuevo" class="input-group mt-3"> ';
+            html += '<input type="text" name="NomVulgares" class="form-control"/>';
+            html += '<div class="input-group-append">';        
+            html += '<button id="eliminarInput" type="button" class="btn btn-danger"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">';
+            html += '< path d = "M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />';
+            html += '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />';
+            html += '</svg ></button>';
+            html += ' </div>';
+            html += '</div>';
+
+            $('#nuevoInput').append(html);
+        });
+        $(document).on('click', '#eliminarInput', function () {
+            var cantFilas = parseInt($("#total").val());
+            cantFilas--;
+            $("#total").val(cantFilas);
+            $(this).closest('#inputNuevo').remove();
+        });
+
+
+
+
+    </script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

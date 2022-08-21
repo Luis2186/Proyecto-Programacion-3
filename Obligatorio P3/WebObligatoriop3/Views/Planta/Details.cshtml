@@ -1,0 +1,82 @@
+﻿@model Dominio.EntidadesNegocio.Planta
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalle Completo </h1>
+
+<div>
+    <h4>Planta</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NombreCientifico)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NombreCientifico)<br><br>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NombresVulgares)
+        </dt>
+        <dd class="col-sm-10">
+            <ul>
+                @foreach (var nV in @Model.NombresVulgares)
+                {
+                    <li>@nV</li>
+                }
+            </ul>
+        </dd>
+        <dt class="col-sm-2">
+            Tipo de Planta:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Tipo.Nombre<br>
+            Descripcion: @Model.Tipo.Descripcion<br><br>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Descripcion)<br><br>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ambiente)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ambiente)<br><br>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AlturaMaxima)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AlturaMaxima) cm<br><br>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Foto)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/Imagenes/@Model.Foto" height="70"><br><br>
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FichaDeCuidados)
+        </dt>
+        <dd class="col-sm-10">
+            Frecuencia de riego: @Model.FichaDeCuidados.Cantidad @Model.FichaDeCuidados.UnidadDeTiempo <br>
+            Temperatura: @Model.FichaDeCuidados.Temperatura °C <br>
+            Tipo de Iluminacion: @Model.FichaDeCuidados.TipoDeIluminacion.Nombre<br><br>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Precio)<br><br>
+        </dd>
+
+    </dl>
+</div>
+<div>   
+    <a asp-action="ListaDePlantas">Volver a la lista</a>
+</div>

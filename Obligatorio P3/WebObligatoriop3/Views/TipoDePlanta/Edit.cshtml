@@ -1,0 +1,54 @@
+﻿@model Dominio.EntidadesNegocio.TipoDePlanta
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>     
+            <div class="form-group my-3">
+                <label asp-for="Nombre" class="control-label font-weight-bold"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="Descripcion" class="control-label font-weight-bold"></label>
+                <textarea asp-for="Descripcion" class="form-control"> </textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <input type="submit" value="Actualizar" class="btn btn-success my-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ListaTiposDePlanta">Volver a la Lista</a>
+</div>
+
+
+@section Scripts {
+
+        <script type="text/javascript">
+
+    function openSuccesModal(mensajeError) {
+        document.getElementById('mensajeModalError').innerHTML = mensajeError;
+        $('#myModalError').modal('show');
+        }
+
+    $(document).ready(function () {
+        var msgError = "@TempData["MensajeError"]";
+        if (msgError)
+            openSuccesModal(msgError);
+    });
+        </script>
+    
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

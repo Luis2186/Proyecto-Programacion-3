@@ -1,0 +1,61 @@
+﻿@using Dominio.EntidadesNegocio;
+@model TipoDePlanta
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1 class="my-3"> Buscar Tipo De Planta</h1>
+<hr />
+<div class="row m-3">
+    <form method="post" >
+        <div class="form-group my-3">
+            <label class="control-label font-weight-bold"> Ingrese el nombre del Tipo de Planta</label>
+            <input type="text" name="nombre" class="form-control">
+        </div>
+        <div class="form-group my-3">
+            <br>
+            <input type="submit" value="Buscar" class="btn btn-success">
+        </div>
+
+    </form>  
+</div>
+
+<div class="row m-3">
+    @if (ViewBag.tDP != null)
+     {
+        <div class="form-group my-3">
+            <h3 class="my-3"> Detalle </h3>
+            <p> <span class="font-weight-bold">Nombre: </span> @ViewBag.tDP.Nombre</p>
+            <p> <span class="font-weight-bold">Descripcion:  </span> @ViewBag.tDP.Descripcion</p>
+            <br>
+            <a href="/TipoDePlanta/EditDesc/@ViewBag.tDP.Id" class="btn btn-success"> Editar Descripcion </a>
+            <a href="/TipoDePlanta/Delete/@ViewBag.tDP.Id" class="btn btn-danger"> Eliminar </a>
+        </div>
+        }
+        else
+        {
+        @if (@ViewBag.Resultado != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.Resultado
+            </div>
+        }
+      }
+        </div>
+        @section Scripts {
+            <script type="text/javascript">
+
+    function openSuccesModal(mensajeError) {
+        document.getElementById('mensajeModalError').innerHTML = mensajeError;
+        $('#myModalError').modal('show');
+        }
+
+    $(document).ready(function () {
+        var msgError = "@TempData["MensajeError"]";
+        if (msgError)
+            openSuccesModal(msgError);
+    });
+            </script>
+        }

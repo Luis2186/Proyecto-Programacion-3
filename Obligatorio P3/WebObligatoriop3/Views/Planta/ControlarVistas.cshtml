@@ -1,0 +1,181 @@
+﻿@model WebObligatoriop3.Models.ViewModelPlanta
+
+
+<h1 class="mt-5"> Criterios De Busqueda </h1>
+
+
+<form method="post" class="formulario mt-5" >
+    <ol class="list-group list-group-numbered">
+        <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-primary">
+            
+            <div class="ms-2 me-auto">
+                <div class="fw-bold my-2 "><a href="/Planta/PlantaPorTextoEnNombre" class="btn btn-light"> Por Nombre </a></div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search mr-2" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+                Busque la planta por el nombre científico o alguno de sus nombres vulgares.
+                <i class="bi bi-search"></i>
+            </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold my-2"> <a href="/Planta/PlantasPorTipo" class="btn btn-secondary"> Por Tipo de Planta </a> </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search mr-2" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+                Busque la planta seleccionando un tipo existente y se desplegaran todas las del tipo seleccionado.
+            </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-primary">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold my-2"> <a href="/Planta/PlantasPorAmbiente" class="btn btn-light"> Por Ambiente </a> </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search mr-2" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+                Busque la planta seleccionando el ambiente al que corresponde y se desplegaran todas las plantas que sean de ese ambiente.
+                <i class="bi bi-search"></i>
+            </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold my-2"> <a href="/Planta/PlantasPorMayorAltura" class="btn btn-secondary"> Por altura mayor o igual</a> </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search mr-2" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+                Busque la planta dada una altura en centímetros, se mostraran las que tengan esa altura o sean mas altas.
+                <i class="bi bi-search"></i>
+            </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-primary">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold my-2"> <a href="/Planta/PlantasPorMenorAltura" class="btn btn-light"> Por altura menor  </a>  </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search mr-2" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+                Busque la planta dada una altura en centímetros, se mostraran las que tengan esa altura o que sean mas bajas.
+                <i class="bi bi-search"></i>
+            </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold my-2"><a href="/Planta/ListaDePlantas" class="btn btn-secondary"> Mostrar Todas Las plantas </a>  </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search mr-2" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+                Se mostraran todas las plantas
+                <i class="bi bi-search"></i>
+            </div>
+        </li>
+
+    </ol>
+
+</form>
+
+@*@switch (ViewBag.TipoDeBusqueda)
+{
+    case 1:
+
+
+
+        break;
+    case 2:
+
+        break;
+    case 3:
+
+        break;
+    case 4:
+
+        break;
+    case 5:
+
+        break;
+    case 6:
+
+        break;
+    default:
+
+        break;
+}
+
+@if (Model.Plantas != null)
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Tipo de Planta
+                </th>
+                <th>
+                    Nombre Cientifico
+                </th>
+                <th>
+                    Descripcion
+                </th>
+                <th>
+                    Nombres Vulgares
+                </th>
+                <th>
+                    Ambiente
+                </th>
+                <th>
+                    Altura Maxima
+                </th>
+                <th>
+                    Foto
+                </th>
+                <th>
+                    Ficha de Cuidados
+                </th>
+                <th>
+                    Precio
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Plantas)
+            {
+                <tr>
+                    <td>
+                        @item.Tipo
+                    </td>
+                    <td>
+                        @item.NombreCientifico
+                    </td>
+                    <td>
+                        @item.Descripcion
+                    </td>
+                    <td>
+                        @foreach (var nV in @item.NombresVulgares)
+                        {
+                            @nV
+                        }
+                    </td>
+                    <td>
+                        @item.Ambiente
+                    </td>
+                    <td>
+                        @item.AlturaMaxima
+                    </td>
+                    <td>
+                        @item.Foto
+                    </td>
+                    <td>
+                        @item.FichaDeCuidados
+                    </td>
+                    <td>
+                        @item.Precio
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}*@

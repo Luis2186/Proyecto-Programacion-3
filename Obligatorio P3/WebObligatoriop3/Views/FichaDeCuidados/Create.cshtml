@@ -1,0 +1,54 @@
+﻿@model WebObligatoriop3.Models.ViewModelFichaDeCuidado
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ViewModelFichaDeCuidado</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="UnaF.Cantidad" class="control-label"></label>
+                <input asp-for="UnaF.Cantidad" class="form-control" />
+                <span asp-validation-for="UnaF.Cantidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label"> Unidad de Tiempo</label>
+                <input asp-for="UnaF.UnidadDeTiempo" class="form-control" />
+                <span asp-validation-for="UnaF.UnidadDeTiempo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnaF.Temperatura" class="control-label"></label>
+                <input asp-for="UnaF.Temperatura" class="form-control" />
+                <span asp-validation-for="UnaF.Temperatura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tipo de Iluminacion </label>
+                <select name="IdTipoDeIluminacion" id="tdi" class="form-control">
+                    @foreach (Dominio.EntidadesNegocio.TipoDeIluminacion tDI in Model.TipoDeIluminaciones)
+                    {
+                        <option value="@tDI.Id">@tDI.Nombre</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

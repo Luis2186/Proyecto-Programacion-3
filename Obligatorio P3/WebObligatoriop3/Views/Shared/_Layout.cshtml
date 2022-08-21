@@ -1,0 +1,124 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Repositorios;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebObligatoriop3</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />  
+</head>
+<body>
+    <header>
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">              
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (Context.Session.GetString("UsuarioAutorizado") == "Si")
+                        {
+                            <!-- Mantenimiento Tipo de Plantas -->
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="TipoDePlanta" asp-action="Create">Registro Tipo de Planta</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="TipoDePlanta" asp-action="ListaTiposDePlanta">Lista Tipo de Plantas</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="TipoDePlanta" asp-action="BuscarPorNombre">Buscar Tipo de Planta</a>
+                            </li>                        
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="TipoDePlanta" asp-action="BuscarPorNombre">Modificar Descripcion Tipos de Planta</a>
+                            </li>
+
+                            <!-- Registro de Planta -->
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Planta" asp-action="Create">Registro Planta</a>
+                            </li>
+
+                            <!-- Busqueda de Planta -->
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Planta" asp-action="ControlarVistas"> Busqueda de Plantas</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Planta" asp-action="ListaDePlantas"> Lista de Plantas</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">Salir</a>
+                            </li>
+
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+     
+                <!-- Modal Correcto -->
+
+                <div class="modal fade text-width:30%" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h4 class="modal-title">Informacion</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body alert alert-success" id="mensajeModal">
+
+                            </div>
+                            <div class="modal-footer">
+                                &nbsp;
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Error -->
+
+                <div class="modal fade text-width:30%" id="myModalError" role="dialog">
+                    <div class="modal-dialog modal-lg">
+
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h4 class="modal-title">Informacion</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body alert alert-danger" id="mensajeModalError">
+
+                            </div>
+                            <div class="modal-footer">
+                                &nbsp;
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @RenderBody()
+        </main>
+    </div>
+
+  
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - WebObligatoriop3 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

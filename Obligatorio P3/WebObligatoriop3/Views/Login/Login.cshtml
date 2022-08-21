@@ -1,0 +1,58 @@
+﻿@using Dominio.EntidadesNegocio;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="card text-center" style="width: 18rem;margin:auto; margin-top:250px">
+
+    <div class="card-header">
+        <h5 class="card-title text-center">Login</h5>
+    </div>
+
+    <div class="card-body">
+       
+        <form method="post" class="text-center">
+            <div class="mb-3">
+                <label for="nombreUsuario" class="form-label">Nombre de Usuario</label>
+                <input type="text" name="Email" class="form-control" id="nombreUsuario" value="lucho@hotmail.com">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="Contraseña" class="form-control" id="password" value="Lucho123">
+            </div>
+
+            <div class="form-group">
+                @*Cargar Valores de Validacion Planta*@
+                <input name="ValiPlantaDesde" hidden class="form-control" value="10" />
+                <input name="ValiPlantaHasta" hidden class="form-control" value="500" />
+                @*Cargar Valores de Validacion Tipo de Planta*@
+                <input name="ValiTipoDePlantaDesde" hidden class="form-control" value="10" />
+                <input name="ValiTipoDePlantaHasta" hidden class="form-control" value="200" />
+                @*Cargar Valor de % CargarTasaIva de Compra/Plaza*@
+                <input name="CargarTasaIva" hidden class="form-control" value="22" />
+                @*Cargar Valor de % Impuesto de Importacion y Tasa Arancelaria de Compra/Importacion*@
+                <input name="CargarImpuestoImportacion" hidden class="form-control" value="35" />
+                <input name="CargarTasaArancelaria" hidden class="form-control" value="6" />
+            </div>
+
+            <button type="submit" class="btn btn-success">Ingresar</button>
+        </form>
+    </div>
+
+    @if (@ViewBag.Error != null && @ViewBag.Error1 != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Error <br>
+            @ViewBag.Error1
+        </div>
+    }
+</div>
+
+
+
+
+   
+

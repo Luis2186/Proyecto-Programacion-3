@@ -1,0 +1,126 @@
+﻿@model WebObligatoriop3.Models.ViewModelPlanta
+
+@{
+    ViewData["Title"] = "ListaDePlantas";
+}
+
+<h1> Busqueda por altura mayor o igual</h1>
+<br>
+<br>
+<div class="row mt-3">
+    <div class="col-md-4">
+        <form method="post" class="formulario">
+
+            <div class="form-group mt-3">
+                <label class="control-label font-weight-bold"> Ingrese la altura</label>
+                <input type="number" name="altura" class="form-control">
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Buscar" class="btn btn-dark">
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model.Plantas != null && Model.Plantas.Any())
+{
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>
+                    Tipo de Planta
+                </th>
+                <th>
+                    Nombre Cientifico
+                </th>
+                <th>
+                    Descripcion
+                </th>
+                <th>
+                    Nombres Vulgares
+                </th>
+                <th>
+                    Ambiente
+                </th>
+                <th>
+                    Altura Maxima
+                </th>
+                <th>
+                    Foto
+                </th>
+                <th>
+                    Ficha de Cuidados
+                </th>
+                <th>
+                    Precio
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Plantas)
+            {
+                <tr>
+                    <td>
+                        @item.Tipo
+                    </td>
+                    <td>
+                        @item.NombreCientifico
+                    </td>
+                    <td>
+                        @item.Descripcion
+                    </td>
+                    <td>
+                        <ul>
+                            @foreach (var nV in @item.NombresVulgares)
+                            {
+                                <li>@nV</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        @item.Ambiente
+                    </td>
+                    <td>
+                        @item.AlturaMaxima cm
+                    </td>
+                    <td>
+                        <img src="~/Imagenes/@item.Foto" height="70">
+                    </td>
+                    <td>
+                        <a href="/FichaDeCuidados/Details/@item.FichaDeCuidados.Id">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-card-list ml-2" viewBox="0 0 16 16">
+                                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                                <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
+                            </svg>
+                        </a>
+                    </td>
+                    <td>
+                        @item.Precio
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<br>
+<br>
+<a href="/Planta/ControlarVistas"> Volver </a>
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+    function openSuccesModal(mensajeError) {
+        document.getElementById('mensajeModalError').innerHTML = mensajeError;
+        $('#myModalError').modal('show');
+        }
+
+    $(document).ready(function () {
+        var msgError = "@TempData["MensajeError"]";
+        if (msgError)
+            openSuccesModal(msgError);
+    });
+    </script>
+}
